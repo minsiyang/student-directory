@@ -20,10 +20,11 @@ def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
-# print a number before the name of each student
+# print the students whose name is shorter than 12 characters
 def print(students)
   students.each do |student|
-    if student[:name][0] == "D"
+    name_length = student[:name].split(" ").join.length
+    if name_length < 12
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
