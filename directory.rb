@@ -22,9 +22,10 @@ def print_header
 end
 # print a number before the name of each student
 def print(students)
-  students.each_with_index do |student, index|
-    index += 1
-    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+  students.each do |student|
+    if student[:name][0] == "D"
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 def print_footer(students)
