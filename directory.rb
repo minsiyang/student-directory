@@ -8,7 +8,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, hobbies: :crafts, country_of_birth: :galaxy}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -22,10 +22,8 @@ def print_header
 end
 # rewrite the each method, prints all students using while or until CF methods.
 def print(students)
-  index = 0
-  until index >= students.length
-    puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
-    index += 1
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort) is born in #{student[:country_of_birth]}, has a great passion for #{student[:hobbies]}."
   end
 end
 def print_footer(students)
