@@ -17,17 +17,16 @@ def input_students
   students
 end
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(90)
+  puts "-------------".center(90)
 end
-# rewrite the each method, prints all students using while or until CF methods.
 def print(students)
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort) is born in #{student[:country_of_birth]}, has a great passion for #{student[:hobbies]}."
   end
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(92)
 end
 
 students = input_students
