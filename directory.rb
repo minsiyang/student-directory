@@ -20,13 +20,12 @@ def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
-# print the students whose name is shorter than 12 characters
+# rewrite the each method, prints all students using while or until CF methods.
 def print(students)
-  students.each do |student|
-    name_length = student[:name].split(" ").join.length
-    if name_length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
+  index = 0
+  until index >= students.length
+    puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    index += 1
   end
 end
 def print_footer(students)
