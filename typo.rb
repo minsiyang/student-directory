@@ -33,10 +33,6 @@ def print_footer(students)
 end
 
 students = input_students
-if students.count > 0
-  print_header
-  print(students)
-  print_footer(students)
-else
-  puts "There is no student found."
-end
+print_header
+print(students)
+print_footer(students)

@@ -55,6 +55,10 @@ end
 
 students = input_students
 # nothing happens until we call the methods
-print_header
-print(students)
-print_footer(students)
+if students.count > 0
+  print_header
+  print(students)
+  print_footer(students)
+else
+  puts "There is no student found."
+end
