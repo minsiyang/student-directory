@@ -25,16 +25,28 @@ def input_students
   students
 end
 def print_header
-  puts "The students of Villains Academy".center(90)
-  puts "-------------".center(90)
+  puts "The students of Villains Academy".center(33)
+  puts "-------------".center(30)
 end
 def print(students)
+  cohort_list = {}
+
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort) is born in #{student[:country_of_birth]}, has a great passion for #{student[:hobbies]}."
+    cohort = student[:cohort]
+    name = student[:name]
+
+    cohort_list[cohort] = [] if cohort_list[cohort] == nil
+
+    cohort_list[cohort] << name
   end
+
+  cohort_list.each do |cohort, name|
+    puts "#{cohort} cohort: #{name.join(", ")}"
+  end
+
 end
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(92)
+  puts "Overall, we have #{students.count} great students".center(33)
 end
 
 students = input_students
