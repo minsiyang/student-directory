@@ -32,8 +32,11 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
-
 students = input_students
-print_header
-print(students)
-print_footer(students)
+if students.count > 0
+  print_header
+  print(students)
+  print_footer(students)
+else
+  puts "There is no student found."
+end
