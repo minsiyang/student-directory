@@ -5,8 +5,8 @@ def input_students
   # create an empty array
   students = []
 
-  name = gets.chomp
-  cohort = gets.chomp
+  name = gets.delete_suffix("\n")
+  cohort = gets.delete_suffix("\n")
 
   while !name.empty? || !cohort.empty? do
     month = ["january", "february", "march", "april", "may", "june", "july",
@@ -22,8 +22,8 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = gets.delete_suffix("\n")
+    cohort = gets.delete_suffix("\n")
   end
   # return the array of input_students
   students
