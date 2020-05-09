@@ -11,7 +11,7 @@ def print_menu
 end
 
 def interactive_menu
-  try_load_students
+  choose_file
   loop do
     print_menu
     process(STDIN.gets.chomp)
@@ -56,6 +56,7 @@ def load_students(filename = "students.csv")
     add_students
   end
   file.close
+  puts "Loaded #{@students.count} from #{filename}"
 end
 
 def add_students # add the hash to @students array
@@ -95,15 +96,10 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-def try_load_students
-  filename = ARGV.first # first argument from the command line
-  if filename.nil? # if no filename is given, load "students.csv"
-    filename = "students.csv"
-    load_students
-    puts "Loaded #{@students.count} from default:#{filename}"
-  elsif File.exist?(filename) # if filename is given
+def choose_file
+  filename = ARGV.first.nil? ? "students.csv" : ARGV.first
+  if File.exist?(filename) # if filename is given
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
     exit
