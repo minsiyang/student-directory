@@ -56,12 +56,12 @@ end
 
 def load_students
   load_file = gets.chomp
-  file = File.open("#{load_file}.csv", "r")
-  file.readlines.each do |line|
-  @name, @cohort = line.chomp.split(",")
-    add_students
+  File.open("#{load_file}.csv", "r") do |file|
+    file.readlines.each do |line|
+      @name, @cohort = line.chomp.split(",")
+      add_students
+    end
   end
-  file.close
   puts "Loaded #{@students.count} from #{load_file}"
 end
 
@@ -72,14 +72,13 @@ end
 def save_students
   save_file = gets.chomp
   # open the file for writing
-  file = File.open("#{save_file}.csv", "w")
-
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open("#{save_file}.csv", "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
 end
 
 def show_students
