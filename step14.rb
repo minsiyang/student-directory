@@ -56,7 +56,7 @@ end
 
 def load_students
   load_file = gets.chomp
-  file = File.open(load_file, "r")
+  file = File.open("#{load_file}.csv", "r")
   file.readlines.each do |line|
   @name, @cohort = line.chomp.split(",")
     add_students
@@ -72,7 +72,7 @@ end
 def save_students
   save_file = gets.chomp
   # open the file for writing
-  file = File.open(save_file, "w")
+  file = File.open("#{save_file}.csv", "w")
 
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
