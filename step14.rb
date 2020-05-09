@@ -27,10 +27,10 @@ def process(selection)
     puts "Display students"
     show_students
   when "3"
-    puts "Save student names"
+    puts "Create a file name to save student names"
     save_students
   when "4"
-    puts "Load student names"
+    puts "Enter a file name to download student names"
     load_students
   when "9"
     puts "Bye"
@@ -54,14 +54,15 @@ def input_students
   end
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+def load_students
+  load_file = gets.chomp
+  file = File.open(load_file, "r")
   file.readlines.each do |line|
   @name, @cohort = line.chomp.split(",")
     add_students
   end
   file.close
-  puts "Loaded #{@students.count} from #{filename}"
+  puts "Loaded #{@students.count} from #{load_file}"
 end
 
 def add_students # add the hash to @students array
@@ -69,8 +70,9 @@ def add_students # add the hash to @students array
 end
 
 def save_students
+  save_file = gets.chomp
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(save_file, "w")
 
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
