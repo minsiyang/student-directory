@@ -31,8 +31,7 @@ def process(selection)
     save_students
   when "4"
     puts "Enter a file name to download student names"
-    filename = STDIN.gets.chomp
-    load_students(filename)
+    load_students(STDIN.gets.chomp)
   when "9"
     puts "Bye"
     exit # this will cause the program to terminate
