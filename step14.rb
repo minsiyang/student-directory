@@ -8,6 +8,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the list to a file"
   puts "4. Load the list from a file"
+  puts "5. Print source code"
   puts "9. Exit"
 end
 
@@ -32,6 +33,9 @@ def process(selection)
   when "4"
     puts "Enter a file name to download student names"
     load_students(STDIN.gets.chomp)
+  when "5"
+    puts "Source code: "
+    print_source_code
   when "9"
     puts "Bye"
     exit # this will cause the program to terminate
@@ -105,6 +109,10 @@ def choose_file
     puts "Sorry, #{filename} doesn't exist."
     exit
   end
+end
+
+def print_source_code
+  puts File.read($0)
 end
 
 choose_file
