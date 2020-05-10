@@ -1,3 +1,4 @@
+require "csv"
 @students = [] # an instance variable, accessible to all methods
 @name = nil
 @cohort = :november
@@ -11,7 +12,6 @@ def print_menu
 end
 
 def interactive_menu
-  choose_file
   loop do
     print_menu
     process(STDIN.gets.chomp)
@@ -31,7 +31,8 @@ def process(selection)
     save_students
   when "4"
     puts "Enter a file name to download student names"
-    load_students
+    filename = STDIN.gets.chomp
+    load_students(filename)
   when "9"
     puts "Bye"
     exit # this will cause the program to terminate
@@ -54,15 +55,12 @@ def input_students
   end
 end
 
-def load_students
-  load_file = gets.chomp
-  File.open("#{load_file}.csv", "r") do |file|
-    file.readlines.each do |line|
-      @name, @cohort = line.chomp.split(",")
-      add_students
-    end
+def load_students(filename)
+  CSV.foreach("#{filename}") do |line|
+    @name, @cohort = line
+    add_students
   end
-  puts "Loaded #{@students.count} from #{load_file}"
+  puts "Loaded #{@students.count} from #{filename}"
 end
 
 def add_students # add the hash to @students array
@@ -71,12 +69,10 @@ end
 
 def save_students
   save_file = gets.chomp
-  # open the file for writing
-  File.open("#{save_file}.csv", "w") do |file|
+  CSV.open("#{save_file}", "wb") do |line|
     @students.each do |student|
       student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      line << student_data
     end
   end
 end
@@ -112,4 +108,5 @@ def choose_file
   end
 end
 
+choose_file
 interactive_menu
